@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, Charm,Blog">
+    <meta name="keywords" content="Charm,Blog">
     <meta name="description" content="仰天长啸出门去，我辈岂是蓬蒿人">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | 小猩 の 博客</title>
+    <title>小猩 の 博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -464,19 +464,79 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <p>##Lambda<br>###省略规则</p>
+<ol>
+<li>参数类型可以省略</li>
+<li>方法体只有一句代码是大括号return和唯一一句代码的分号可以省略</li>
+<li>方法只有一个参数时小括号可以省略</li>
+<li>以上这些规则都记不住也可以省略不记</li>
+</ol>
+<p>###创建流</p>
+<ol>
+<li>单例集合：.Stream</li>
+<li>数组: Arrays.Stream; Stream.of</li>
+<li>双列集合：先转换单列集合</li>
+</ol>
+<p>###中间操作</p>
+<ol>
+<li><p>map把流中的元素进行计算和转换	   </p>
+<pre><code>  private static void test1() &#123;  
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+ //打印所有作者
+ List&lt;Author&gt; authors = getAuthors();
+ authors.stream()
+         .map(author -&gt; author.getName())
+         .forEach(s -&gt; System.out.println(s));
+ &#125;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+  private static void test2() &#123;
+     List&lt;Author&gt; authors = getAuthors();
+     authors.stream()
+             .map(author-&gt;author.getAge())
+             .map(age -&gt; age+10)
+             .forEach(age -&gt; System.out.println(age));
+ &#125;
+</code></pre>
+</li>
+<li><p>sort进行排序</p>
+</li>
+<li><p>distinct去重</p>
+</li>
+<li><p>limit设置流的长度</p>
+</li>
+<li><p>skip跳过流中前n个元素，返回剩下元素</p>
+</li>
+<li><p>flatMap:map只能把一个对象转换成另一个对象来作为流中的元素。而flatMap可以把一个对象转换成多个对象作为流中的元素(简单来说，就是把一个对象中的一个集合对象，转成集合的存储类型）</p>
+</li>
+<li><p>filter：筛选流中的元素,像判断语句</p>
+</li>
+</ol>
+<p>###终止操作</p>
+<ol>
+<li>foreach:遍历</li>
+<li>count：统计</li>
+<li>max&amp;min：求值最大或最小</li>
+<li>collect: 把当前流转换成一个集合</li>
+<li>anyMatch:判断是否有任意符合匹配条件的元素，结果为boolean类型(通俗来说，就判断是否有这个元素)</li>
+<li>allMatch: 判断是否都符合匹配条件（通俗来说，必须都成立)</li>
+<li>noneMatch：都不符合匹配条件，就是真</li>
+<li>findAny：获取流中的任意的一个元素,但没有办法保证获取的一定是流中的第一个元素</li>
+<li>findFirst: 获取第一个元素</li>
+</ol>
+<p>####reduce归并<br>对流中的数据按照你指定的计算方式计算出一个结果。（缩减操作）<br>reduce作用是把stream中的元素给组合起来，我们可以传入一个初始值，它会按照我们的计算方式依次拿流中的元素和初始化值进行计算，计算结果再和后面的元素计算</p>
+<p>##Optional<br>###Optional就好像是包装类，可以把我们的具体数据封装Optional对象内部。然后我们去使用Optional中封装好的方法操作封装进去的数据就可以非常优雅的避免空指针异常<br>###创建对象</p>
+<ol>
+<li>ofNullable</li>
+<li>of</li>
+<li>empty</li>
+</ol>
+<p>##函数式接口<br>只有一个抽象方法的接口我们称为函数接口<br>JDK的函数式接口都加上了@FunctionalInterface注解进行标识。但是无论是否加上该注解只要接口中只有一个抽象方法，都是函数式接口</p>
+<p>##方法引用<br>我们在使用lambda时，如果方法体中只有一个方法的调用的话（包括构造方法），我们可以用方法引用进一步简化代码。</p>
+<p>###基本格式<br>类名或者对象名：：方法名</p>
+<p>##格式 类名：：方法名<br>使用前提<br>如果我们在重写方法的时候，方法体中只有一行代码，并且这行代码是调用了某个类的静态方法，并且我们把重写的抽象方法中所有的参数都按照顺序传入了这个静态方法中，这个时候我们就可以引用类的静态方法</p>
+<p>##格式 对象名：：方法名<br>使用前提<br>如果我们在重写方法的时候，方法体中只有一行代码，并且这行代码是调用了某个对象的成员方法，并且我们把重写的抽象方法中所有的参数都按照顺序传入了这个成员方法中，这个时候我们就可以引用对象的实例方法</p>
+<p>##格式 类名：：方法名<br>使用前提<br>如果我们在重写方法的时候，方法体中只有一行代码，并且这行代码是调用了第一个参数的成员方法，并且我们把重写的抽象方法中剩余的参数都按照顺序传入了这个成员方法中，这个时候我们就可以引用类的实例方法</p>
+<p>##格式 类名：：new<br>使用前提<br>如果我们在重写方法的时候，方法体中只有一行代码，并且这行代码是调用了某个类构造方法，并且我们把重写的抽象方法中所有的参数都按照顺序传入了这个构造方法中，这个时候我们就可以引用类的构造方法</p>
 
                 
             </div>
@@ -503,7 +563,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://conqueror892.github.io/2022/05/08/hello-world/">http://conqueror892.github.io/2022/05/08/hello-world/</a>
+                    <a href="http://conqueror892.github.io/2022/05/08/Lambda/">http://conqueror892.github.io/2022/05/08/Lambda/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -708,9 +768,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/05/08/Lambda/">
                     <div class="card-image">
@@ -728,9 +789,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -739,6 +800,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -746,7 +808,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2022/05/08/hello-world/">
@@ -776,7 +838,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
